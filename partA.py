@@ -40,6 +40,7 @@ def print_frequencies(frequencies: dict) -> None:
     for token, frequency in sorted_freqs:
         print(f'{token} = {frequency}')
 
+#test tokenize, compute_word_frequencies, and print_frequencies
 if __name__ == '__main__':
     tokens = tokenize(sys.argv[1])
     freqs = compute_word_frequencies(tokens)
