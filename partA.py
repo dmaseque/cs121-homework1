@@ -10,7 +10,7 @@ def tokenize(text_file_path: str) -> list:
         with open(text_file_path, 'r', encoding = 'utf-8') as file:
             #use regex to find tokens in each line
             for line in file:
-                file_line = re.findall(r'\b[a-zA-Z0-9]+\b', line)
+                file_line = re.findall(r'[a-zA-Z0-9]+', line)
                 for token in file_line:
                     tokens.append(token.lower())
     except FileNotFoundError:
@@ -21,7 +21,7 @@ def tokenize(text_file_path: str) -> list:
     return tokens
 
 
-def compute_word_frequencies(tokens: list) -> dict:
+def computeWordFrequencies(tokens: list) -> dict:
 
     word_frequencies = {}
 
@@ -35,15 +35,15 @@ def compute_word_frequencies(tokens: list) -> dict:
 
 def print_frequencies(frequencies: dict) -> None:
 
-    sorted_freqs = sorted(frequencies.items(), key = lambda x: (x[0], x[1]), reverse = False)
+    sorted_freqs = sorted(frequencies.items(), key = lambda x: (-x[1], x[0]))
 
     for token, frequency in sorted_freqs:
-        print(f'{token} = {frequency}')
+        print(f'{token} - {frequency}')
 
 #test tokenize, compute_word_frequencies, and print_frequencies
 if __name__ == '__main__':
     tokens = tokenize(sys.argv[1])
-    freqs = compute_word_frequencies(tokens)
+    freqs = computeWordFrequencies(tokens)
     print_frequencies(freqs)
 
 #test the tokenize function
@@ -55,5 +55,5 @@ if __name__ == '__main__':
 #test the compute_word_frequencies function
 # if __name__ == '__main__':
 #     tokens = tokenize(sys.argv[1])
-#     freqs = compute_word_frequencies(tokens)
+#     freqs = computeWordFrequencies(tokens)
 #     print(freqs)
