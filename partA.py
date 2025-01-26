@@ -39,9 +39,12 @@ def computeWordFrequencies(tokens: list) -> dict:
 
     word_frequencies = {}
 
+    #iterate through every token in tokens list
     for token in tokens: 
+        #if token exists, increment frequencies
         if token in word_frequencies:
             word_frequencies[token] += 1
+        #if token does not exist, set frequency equal to 1
         else:
             word_frequencies[token] = 1
     
@@ -52,8 +55,12 @@ def computeWordFrequencies(tokens: list) -> dict:
 # For loop iterates through every token, frequency pair in frequencies dict = O(n)
 def print_frequencies(frequencies: dict) -> None:
 
-    sorted_freqs = sorted(frequencies.items(), key = lambda x: (-[1], x[0]))
+    #sort the frequencies dict
+    #sort by -x[1] = decreasing frequency (frequency is index 1 of frequencies dict)
+    #then sort by x[0] = alphabetical order of tokens
+    sorted_freqs = sorted(frequencies.items(), key = lambda x: (-x[1], x[0]))
 
+    #print all token, frequency pairs in sorted_freqs
     for token, frequency in sorted_freqs:
         print(f'{token} - {frequency}')
 
