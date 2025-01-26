@@ -2,6 +2,11 @@ import regex as re
 import sys
 import os
 
+# Time Complexity: O(n), where n is the total number of characters
+# Open file and check if file is empty is O(1). Outer for loop reading each line of file and regular
+# expression statement is O(n). Inner for loop iterating for each token in that file line is O(n).
+# Exception handling is O(1). 
+# O(1) + O(n) + O(n) + O(1) = O(n) 
 def tokenize(text_file_path: str) -> list:
 
     tokens = []
@@ -26,7 +31,10 @@ def tokenize(text_file_path: str) -> list:
     
     return tokens
 
-
+# Time Complexity: O(n), where n is the total number of tokens in tokens list
+# For loop iterates through every token in tokens list = O(n)
+# If statements to check if token already exists in word_frequencies (hash/map) = O(1)
+# n * O(1) = O(n)
 def computeWordFrequencies(tokens: list) -> dict:
 
     word_frequencies = {}
@@ -39,9 +47,12 @@ def computeWordFrequencies(tokens: list) -> dict:
     
     return word_frequencies
 
+# Time Complexity: O(nlogn), where n is total number of token, frequency pairs in frequencies dict
+# To sort frequencies dict, sorted function = O(nlogn)
+# For loop iterates through every token, frequency pair in frequencies dict = O(n)
 def print_frequencies(frequencies: dict) -> None:
 
-    sorted_freqs = sorted(frequencies.items(), key = lambda x: (-x[1], x[0]))
+    sorted_freqs = sorted(frequencies.items(), key = lambda x: (-[1], x[0]))
 
     for token, frequency in sorted_freqs:
         print(f'{token} - {frequency}')

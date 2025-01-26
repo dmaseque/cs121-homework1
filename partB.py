@@ -1,6 +1,12 @@
 import partA as A 
 import sys
 
+# Time Complexity: O(nlogn), where n is the total number of characters
+# Tokenize text_file_1 and text_file_2 = O(n) + O(m), where n is the total number of characters of the smaller text file
+# and m is the total number of characters of the larger text file
+# Sort text_file_1 and sort text_file_2 = O(nlogn) + O(mlogm)
+# While loop iterates through the file1_tokens and file2_tokens = O(n), where n is the total number of characters of smaller text file
+# O(n) + O(m) + O(nlogn) + O(mlogm) + O(n) = O(nlogn)
 if __name__ == '__main__':
     text_file_1 = sys.argv[1]
     text_file_2 = sys.argv[2]
