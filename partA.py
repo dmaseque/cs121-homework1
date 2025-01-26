@@ -7,12 +7,18 @@ def tokenize(text_file_path: str) -> list:
     tokens = []
 
     try:
+        #open the file and read
         with open(text_file_path, 'r', encoding = 'utf-8') as file:
-            #use regex to find tokens in each line
-            for line in file:
-                file_line = re.findall(r'[a-zA-Z0-9]+', line)
-                for token in file_line:
-                    tokens.append(token.lower())
+            #check if the file is empty w/o reading entire file
+            if file.read(1):
+                file.seek(0)
+                #use regex to find tokens in each line
+                for line in file:
+                    file_line = re.findall(r'[a-zA-Z0-9]+', line)
+                    for token in file_line:
+                        tokens.append(token.lower())
+            else:
+                print("File is empty.")
     except FileNotFoundError:
         print('File not found.')
     except IOError:
